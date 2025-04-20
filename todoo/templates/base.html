@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Todoo App{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 2rem;
+        }
+        .container {
+            max-width: 800px;
+        }
+
+        /* Stylish App Name */
+        .navbar-brand {
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            font-size: 2rem;
+            color: #343a40;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid #007bff; /* Blue border for outline effect */
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar-brand:hover {
+            background-color: #007bff; /* Change background color on hover */
+            color: white;
+            border-color: #0056b3; /* Darker border on hover */
+        }
+
+        .navbar-brand:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add focus shadow effect */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+            <div class="container-fluid">
+                <!-- Stylish App name with link to home -->
+                <a class="navbar-brand" href="{% url 'todo_list' %}">Todoo</a>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a href="{% url 'logout' %}" class="btn btn-outline-danger">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
