@@ -16,6 +16,34 @@
 - **Frontend**: Bootstrap 5
 - **Authentication**: Django Authentication
 
+## Database
+- **To-do item model**
+```bash
+class Todo(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    STATUS_CHOICES = [
+        ('PENDING', 'Pending'),
+        ('IN_PROGRESS', 'In Progress'),
+        ('COMPLETED', 'Completed'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES,
+                              default='PENDING')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    photo = CloudinaryField(
+        'todoo_photo',
+        folder='todoo_app/photos/',
+        blank=True,
+        null=True,
+        help_text="Upload an optional photo for this task"
+    )
+```
+- **User model**: use default authenticated user model from Django
+
 ## Installation Guide
 
 ### Prerequisites
@@ -59,7 +87,23 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
-## 7. Run the development server
+### 7. Run the development server
 ```bash
 python manage.py runserver
 ```
+## Code Explanation
+
+### Model-View-Template (MVT) in Django
+
+| Component | Description |
+|----------|-------------|
+| **Model** | Defines the structure of the database using Django ORM. Example: `Todo` model stores task title and status. |
+| **View** | Handles logic between model and template. Example: `TodoListView` retrieves to-do data and passes it to the template. |
+| **Template** | Renders HTML UI using Django Template Language. Example: `todo_list.html` displays tasks in a list format with Bootstrap. |
+
+
+### Layered Architecture
+- Presentation layer: HTML Templates and URL Dispatcher, rendering UI and dispatch route through user browser.
+- Business logic layer: Django Forms & Views, handling user request and form submission.
+- Data access layer: Django ORM & Models, define database structure and query data from NEON through Django ORM.
+- Database layer: NEON table.
