@@ -78,7 +78,7 @@ pip install -r requirements.txt
 ```bash
 # create .env
 cp sample.env .env
-3 and set up your environment variables in .env
+# and set up your environment variables in .env
 ```
 ### 6. Apply migrations
 ```bash
