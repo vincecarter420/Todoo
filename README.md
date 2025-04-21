@@ -99,7 +99,7 @@ python manage.py runserver
 |----------|-------------|
 | **Model** | Defines the structure of the database using Django ORM. Example: `Todo` model stores task title and status. |
 | **View** | Handles logic between model and template. Example: `TodoListView` retrieves to-do data and passes it to the template. |
-| **Template** | Renders HTML UI using Django Template Language. Example: `todo_list.html` displays tasks in a list format with Bootstrap. |
+| **Template** | Renders UI using HTML Templates. Example: `todo_list.html` displays tasks in a list format with Bootstrap. |
 
 
 ### Layered Architecture
