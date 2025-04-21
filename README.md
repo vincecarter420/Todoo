@@ -18,7 +18,7 @@
 
 ## Database
 - **To-do item model**
-```bash
+```py
 class Todo(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     STATUS_CHOICES = [
