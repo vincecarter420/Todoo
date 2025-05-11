@@ -53,7 +53,7 @@ class Todo(models.Model):
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/todoo.git
+git clone https://github.com/vincecarter420/todoo.git
 cd todoo
 ```
 
